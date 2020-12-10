@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The List</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+  </head>
+  <body>
+    <h1>
+      The Infernal List
+    </h1>
+    {% for profile in profile %}
+    <h2>
+        {{ profile.name }}
+    </h2>
+    <p>
+        <b>Active</b>: {{ profile.active }}
+    </p>
+    <p>
+      <b>Summary</b>: {{ profile.summary }}
+  </p>
+
+    {% endfor %}
+    
+
+  </body>
+</html>
