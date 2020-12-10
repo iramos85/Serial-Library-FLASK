@@ -38,7 +38,7 @@ def get_random_killer():
 ##DO NOT USE THIS ROUTE. THIS WAS FOR THE INITIAL CREATION OF THE DATABASE##
 @killer.route('/seed', methods=["GET"])
 def make_database():
-    df = pandas.read_csv('/Users/ianramos85/GA/Capstone/Serial_Library/Backend-FLASK/Data/killer_profiles.csv')
+    df = pandas.read_csv('Data/killer_profiles.csv')
     for row in df.iterrows():
         models.Killer.create(
             name=row[1].Name,
