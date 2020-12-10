@@ -50,7 +50,10 @@ CORS(user, origins=['http://localhost:3000'], supports_credentials=True) # addin
 app.register_blueprint(killer, url_prefix='/api/v1/killers') # adding this line
 app.register_blueprint(user, url_prefix='/api/v1/users')
 
-
+app.config.update(
+  SESSION_COOKIE_SECURE=True,
+  SESSION_COOKIE_SAMESITE='None'
+)
 
 @app.before_request
 def before_request():
