@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask, jsonify, g, request, redirect, url_for
 
 from flask_cors import CORS
@@ -84,8 +84,16 @@ def profile(username):
         return render_template('profile.html')
 
 
-# When we run this file, everything below this is our executable
-# logic
-if __name__ == "__main__":
-	models.initialize()
-	app.run(debug=DEBUG, port=PORT)
+# ADD THESE THREE LINES -- because we need to initialize the
+# tables in production too!
+if 'ON_HEROKU' in os.environ:
+  print('\non heroku!')
+  models.initialize()
+
+# you should already have these lines at the bottom of your app
+# this is how the app is run when you type "python app.py" on your terminal
+# running a .py file from the terminal causes __name__ to be set to __main__
+# inside that application
+if __name__ == '__main__':
+  models.initialize()
+  app.run(debug=DEBUG, port=PORT)
