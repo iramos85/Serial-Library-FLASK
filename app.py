@@ -44,8 +44,8 @@ def load_user(user_id):
 
 
 
-CORS(killer, origins=['http://localhost:3000', 'https://serial-library-flask.herokuapp.com'], supports_credentials=True) # adding this line
-CORS(user, origins=['http://localhost:3000', 'https://serial-library-flask.herokuapp.com'], supports_credentials=True) # adding this line
+CORS(killer, origins=['http://localhost:3000', 'https://serial-library.herokuapp.com'], supports_credentials=True) # adding this line
+CORS(user, origins=['http://localhost:3000', 'https://serial-library.herokuapp.com'], supports_credentials=True) # adding this line
 
 # CORS(killer, origins=['http://localhost:3000'], supports_credentials=True) # adding this line
 # CORS(user, origins=['http://localhost:3000'], supports_credentials=True) # adding this line
