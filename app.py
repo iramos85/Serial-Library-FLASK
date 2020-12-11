@@ -1,12 +1,9 @@
 import os
 from flask import Flask, jsonify, g, request, redirect, url_for
-
 from flask_cors import CORS
 from resources.killers import killer # adding this line
 from resources.users import user
 import models
-
-
 from flask_login import LoginManager
 
 DEBUG = True
@@ -14,6 +11,10 @@ PORT = 8000
 
 app = Flask(__name__)
 
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_SAMESITE='None'
+)
 
 # configuring the LoginManager according to this
 # https://flask-login.readthedocs.io/en/latest/#configuring-your-application
@@ -54,10 +55,7 @@ app.register_blueprint(killer, url_prefix='/api/v1/killers') # adding this line
 app.register_blueprint(user, url_prefix='/api/v1/users')
 
 
-app.config.update(
-    SESSION_COOKIE_SECURE=True,
-    SESSION_COOKIE_SAMESITE='None'
-)
+
 
 @app.before_request
 def before_request():
@@ -77,18 +75,18 @@ def after_request(response):
 def index():
 	return "Hello"
 
-@app.route('/profile/<username>')
-def profile(username):
+# @app.route('/profile/<username>')
+# def profile(username):
 
-    if 'username' not in session:
-        return redirect(url_for('login'))
+#     if 'username' not in session:
+#         return redirect(url_for('login'))
 
-    user = User.query.filter_by(username = session['username'])
+#     user = User.query.filter_by(username = session['username'])
 
-    if user is None:
-        return redirect(url_for('login'))
-    else:
-        return render_template('profile.html')
+#     if user is None:
+#         return redirect(url_for('login'))
+#     else:
+#         return render_template('profile.html')
 
 
 # ADD THESE THREE LINES -- because we need to initialize the
