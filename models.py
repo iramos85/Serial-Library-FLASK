@@ -32,7 +32,7 @@ class Killer(Model):
     # Columns
     name = CharField()
     active = CharField()
-    summary = CharField()
+    summary = TextField()
     class Meta:
         database = DATABASE
 
